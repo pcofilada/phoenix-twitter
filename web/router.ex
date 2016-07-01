@@ -17,6 +17,8 @@ defmodule PhoenixTwitter.Router do
     pipe_through :browser # Use the default browser stack
 
     get "/", PageController, :index
+
+    resources "/sign_up", RegistrationController, only: [:new, :create]
   end
 
   # Other scopes may use custom stacks.

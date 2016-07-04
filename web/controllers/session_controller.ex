@@ -18,4 +18,11 @@ defmodule PhoenixTwitter.SessionController do
         |> render("new.html")
     end
   end
+
+  def delete(conn, _) do
+    conn
+    |> delete_session(:current_user)
+    |> put_flash(:info, "Signed Out")
+    |> redirect(to: "/")
+  end
 end

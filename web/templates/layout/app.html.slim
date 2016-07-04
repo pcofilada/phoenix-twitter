@@ -12,11 +12,15 @@ html lang="en"
   body
     .container
       header.header
+        span.logo
         nav role="navigation"
           ul.nav.nav-pills.pull-right
-            li
-              a href="http://www.phoenixframework.org/docs" Get Started
-        span.logo
+          = if logged_in?(@conn) do
+            li= current_user(@conn).email
+            li= link "Sign Out", to: session_path(@conn, :delete), method: :delete
+          - else
+            li= link "Sign In", to: session_path(@conn, :new)
+            li= link "Sign Up", to: registration_path(@conn, :new)
 
       p.alert.alert-info role="alert"= get_flash(@conn, :info)
       p.alert.alert-danger role="alert"= get_flash(@conn, :error)

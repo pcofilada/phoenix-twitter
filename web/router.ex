@@ -21,6 +21,7 @@ defmodule PhoenixTwitter.Router do
     resources "/sign_up", RegistrationController, only: [:new, :create]
     get "/sign_in", SessionController, :new
     post "/sign_in", SessionController, :create
+    delete "/sign_out", SessionController, :delete
   end
 
   # Other scopes may use custom stacks.

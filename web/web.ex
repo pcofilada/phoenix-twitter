@@ -52,6 +52,8 @@ defmodule PhoenixTwitter.Web do
       import PhoenixTwitter.Router.Helpers
       import PhoenixTwitter.ErrorHelpers
       import PhoenixTwitter.Gettext
+
+      import PhoenixTwitter.Session, only: [current_user: 1, logged_in?: 1]
     end
   end
 

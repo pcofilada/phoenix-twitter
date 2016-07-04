@@ -1,0 +1,13 @@
+h1 Sign In
+
+= form_for @conn, session_path(@conn, :create), [as: :session], fn f ->
+  .form-group
+    label Email
+    = email_input f, :email, class: "form-control", placeholder: "Email Address"
+
+  .form-group
+    label Password
+    = password_input f, :password, class: "form-control", placeholder: "Password"
+
+  .form-group
+    = submit "Sign In", class: "btn btn-primary"

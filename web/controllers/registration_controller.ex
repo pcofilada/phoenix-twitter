@@ -13,7 +13,7 @@ defmodule PhoenixTwitter.RegistrationController do
   def create(conn, %{"user" => user_params}) do
     changeset = User.changeset(%User{}, user_params)
 
-    case PhoenixTwitter.Registration.create(changeset, PhoenixTwitter.Repo) do
+    case PhoenixTwitter.Auth.sign_up(changeset, Repo) do
       {:ok, changeset} ->
         conn
         |> put_flash(:info, "Account created")

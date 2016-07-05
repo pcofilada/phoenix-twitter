@@ -15,8 +15,8 @@ html lang="en"
         span.logo
         nav role="navigation"
           ul.nav.nav-pills.pull-right
-          = if logged_in?(@conn) do
-            li= current_user(@conn).email
+          = if @current_user do
+            li= @current_user.email
             li= link "Sign Out", to: session_path(@conn, :delete), method: :delete
           - else
             li= link "Sign In", to: session_path(@conn, :new)

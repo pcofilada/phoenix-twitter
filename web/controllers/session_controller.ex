@@ -6,10 +6,10 @@ defmodule PhoenixTwitter.SessionController do
   end
 
   def create(conn, %{"session" => session_params}) do
-    case PhoenixTwitter.Session.login(session_params, PhoenixTwitter.Repo) do
+    case PhoenixTwitter.Auth.sign_in(session_params, Repo) do
       {:ok, user} ->
         conn
-        |> put_session(:current_user, user.id)
+        |> put_session(:user_id, user.id)
         |> put_flash(:info, "Signed In")
         |> redirect(to: "/")
       :error ->
@@ -21,7 +21,7 @@ defmodule PhoenixTwitter.SessionController do
 
   def delete(conn, _) do
     conn
-    |> delete_session(:current_user)
+    |> delete_session(:user_id)
     |> put_flash(:info, "Signed Out")
     |> redirect(to: "/")
   end

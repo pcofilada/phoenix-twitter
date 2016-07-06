@@ -36,6 +36,9 @@ defmodule PhoenixTwitter.Web do
 
       import PhoenixTwitter.Router.Helpers
       import PhoenixTwitter.Gettext
+
+      # Custom Plugs
+      import PhoenixTwitter.Auth
     end
   end
 

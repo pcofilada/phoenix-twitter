@@ -1,0 +1,31 @@
+doctype html
+html lang="en"
+  head
+    meta charset="utf-8"
+    meta content="IE=edge" http-equiv="X-UA-Compatible"
+    meta content="width=device-width, initial-scale=1" name="viewport"
+    meta content="" name="description"
+    meta content="" name="author"
+    title Hello ApplicationName!
+    link rel="stylesheet" href="#{static_path(@conn, "/css/app.css")}"
+
+  body
+    .container
+      header.header
+        span.logo
+        nav role="navigation"
+          ul.nav.nav-pills.pull-right
+          = if @current_user do
+            li= @current_user.email
+            li= link "Sign Out", to: session_path(@conn, :delete), method: :delete
+          - else
+            li= link "Sign In", to: session_path(@conn, :new)
+            li= link "Sign Up", to: registration_path(@conn, :new)
+
+      p.alert.alert-info role="alert"= get_flash(@conn, :info)
+      p.alert.alert-danger role="alert"= get_flash(@conn, :error)
+
+      main role="main"
+        = render @view_module, @view_template, assigns
+
+    script src="#{static_path(@conn, "/js/app.js")}"
